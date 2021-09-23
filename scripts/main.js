@@ -7,3 +7,9 @@ function Book(title, author) {
         return `${this.title} by ${this.author}, ${this.pages} pages, ${readBook}`
     }
 }
+
+let myLibrary = [];
+function addBookToLibrary() {
+    const newBook = prompt('Add a new book to the library: ');
+    myLibrary.push(newBook);
+}
