@@ -9,7 +9,16 @@ function Book(title, author) {
 }
 
 let myLibrary = [];
+
 function addBookToLibrary() {
     const newBook = prompt('Add a new book to the library: ');
     myLibrary.push(newBook);
 }
+
+function displayLibrary() {
+    myLibrary.forEach(book => console.log(book));
+}
+
+addBookToLibrary();
+addBookToLibrary();
+displayLibrary();
