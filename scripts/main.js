@@ -37,13 +37,17 @@ function createBookElement(book) {
 
     // Book info
     const title = document.createElement('div');
+    title.classList.add('title');
     const author = document.createElement('div');
+    author.classList.add('author');
     const pages = document.createElement('div');
+    pages.classList.add('pages');
 
     // Read book input
     const readBookContainer = document.createElement('div');
     readBookContainer.classList.add('read-book-container');
     const markedRead = document.createElement('div');
+    markedRead.classList.add('marked-read');
     const readBook = document.createElement('input');
     readBookContainer.appendChild(markedRead);
     readBookContainer.appendChild(readBook);
