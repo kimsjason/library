@@ -75,12 +75,18 @@ newBook.addEventListener('click', () => {
         const author = document.querySelector('input[name=author]');
         const pages = document.querySelector('input[name=pages]');
         const readBook = document.querySelector('input[name="read book"]');
-        const book = new Book(title.value, author.value, pages.value, readBook.checked);
 
-        addBookToLibrary(book);
-        const books = document.getElementsByClassName('books')[0];
-        books.appendChild(createBookElement(book));
-        bookForm.reset();
+        if ((title.value === '') || (author.value === '') || (pages.value === '')) {
+            console.log('This is a required field');
+        } else if (isNaN(pages.value)) {
+            console.log('Please enter a number');
+        } else {
+            const book = new Book(title.value, author.value, pages.value, readBook.checked);
+            addBookToLibrary(book);
+            const books = document.getElementsByClassName('books')[0];
+            books.appendChild(createBookElement(book));
+            bookForm.reset();
+        }
     });
 });
 
