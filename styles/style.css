@@ -29,12 +29,6 @@ body {
     background-color: #a4b8bf;
 }
 
-.new-book {
-    max-width: 90%;
-    margin: 10px auto; 
-    padding: 15px 30px;
-}
-
 .book-form {
     display: flex;
     flex-direction: column;
@@ -56,10 +50,6 @@ input {
 .read-book {
     display: flex;
     align-items: center;
-}
-
-.popup {
-    display: none;
 }
 
 /* BOOK STYLES */

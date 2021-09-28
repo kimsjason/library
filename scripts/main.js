@@ -74,28 +74,22 @@ function createBookElement(book) {
 
     return card;
 }
-
-const newBook = document.querySelector('.new-book');
-newBook.addEventListener('click', () => {
-    const bookForm = document.querySelector('.book-form');
-    bookForm.classList.toggle('popup');
     
-    const submitForm = document.querySelector('input[type=button]');
-    submitForm.addEventListener('click', () => {
-        const title = document.querySelector('input[name=title]');
-        const author = document.querySelector('input[name=author]');
-        const pages = document.querySelector('input[name=pages]');
-        const readBook = document.querySelector('input[name="read book"]');
+const submitForm = document.querySelector('input[type=button]');
+submitForm.addEventListener('click', () => {
+    const title = document.querySelector('input[name=title]');
+    const author = document.querySelector('input[name=author]');
+    const pages = document.querySelector('input[name=pages]');
+    const readBook = document.querySelector('input[name="read book"]');
 
-        if ((title.value === '') || (author.value === '') || (pages.value === '')) {
-            console.log('This is a required field');
-        } else if (isNaN(pages.value)) {
-            console.log('Please enter a number');
-        } else {
-            const book = new Book(title.value, author.value, pages.value, readBook.checked);
-            addBookToLibrary(book);
-            books.appendChild(createBookElement(book));
-            bookForm.reset();
-        }
-    });
+    if ((title.value === '') || (author.value === '') || (pages.value === '')) {
+        console.log('This is a required field');
+    } else if (isNaN(pages.value)) {
+        console.log('Please enter a number');
+    } else {
+        const book = new Book(title.value, author.value, pages.value, readBook.checked);
+        addBookToLibrary(book);
+        books.appendChild(createBookElement(book));
+        bookForm.reset();
+    }
 });
