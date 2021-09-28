@@ -68,7 +68,8 @@ newBook.addEventListener('click', () => {
         const book = new Book(title.value, author.value, pages.value, readBook.checked);
 
         addBookToLibrary(book);
-        document.body.appendChild(createBookElement(book));
+        const books = document.getElementsByClassName('books')[0];
+        books.appendChild(createBookElement(book));
         bookForm.reset();
     });
 });
