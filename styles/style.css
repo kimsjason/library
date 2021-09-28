@@ -97,10 +97,12 @@ input {
 }
 
 .author {
+    font-size: 0.75em;
     font-weight: bold;
 }
 
 .pages {
+    font-size: 0.75em;
     font-weight: 300;
 }
 
