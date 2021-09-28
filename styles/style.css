@@ -12,7 +12,7 @@ html, body {
 
 body {
     display: flex;
-    font-family: 'Open Sans'
+    font-family: 'Open Sans', sans-serif;
 }
 
 /* FORM STYLES */
@@ -56,13 +56,13 @@ body {
 .card {
     display: flex;
     flex-direction: column;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     margin: 25px;
-    padding: 10px;
+    padding: 25px;
     border-radius: 10px;
     background-color: #f5eae3;
-    line-height: 1.5;
+    line-height: 2;
 }
 
 .remove-book {
@@ -74,6 +74,19 @@ body {
     color: white;
 }
 
+.title {
+    font-size: 1.25em;
+    font-style: italic;
+}
+
+.author {
+    font-weight: bold;
+}
+
+.pages {
+    font-weight: 300;
+}
+
 .read-book-container {
     display: flex;
     align-items: center;
@@ -81,6 +94,11 @@ body {
     margin-left: auto;
 }
 
+.marked-read {
+    font-size: 0.75em;    
+}
+
 input[type=checkbox] {
     margin: 0 10px;
 }
+
