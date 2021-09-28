@@ -54,16 +54,6 @@ function createBookElement(book) {
     return card;
 }
 
-
-
-
-// function displayLibrary() {
-//     myLibrary.forEach(book => {
-//         document.body.appendChild(createBookElement(book));
-//     });
-// }
-
-
 const newBook = document.querySelector('.new-book');
 newBook.addEventListener('click', () => {
     const bookForm = document.querySelector('.book-form');
