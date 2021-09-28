@@ -12,6 +12,7 @@ html, body {
 
 body {
     display: flex;
+    align-items: stretch;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -22,7 +23,16 @@ input {
 /* FORM STYLES */
 .heading {
     margin: 25px;
-    font-size: 2.5em;
+    font-size: 3em;
+    text-align: center;
+}
+
+.subheading {
+    margin: 25px;
+    border-bottom: 3px double black;
+    font-size: 1.5em;
+    text-align: center;
+    line-height: 2;
 }
 
 .form-container {
@@ -114,4 +124,3 @@ input {
 input[type=checkbox] {
     margin: 0 10px;
 }
-
