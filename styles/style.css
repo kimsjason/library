@@ -57,7 +57,7 @@ input {
     border-radius: 5px;
 }
 
-.required-field {
+.required-field, .alert-message {
     color: red;
 }
 
@@ -98,7 +98,6 @@ input {
 }
 
 .title {
-    font-size: 1.25em;
     font-style: italic;
 }
 
