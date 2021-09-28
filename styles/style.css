@@ -72,6 +72,7 @@ input {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    padding: 25px;
 }
 
 .card {
@@ -123,4 +124,15 @@ input {
 
 input[type=checkbox] {
     margin: 0 10px;
+}
+
+/* LIBRARY LOG STYLES */
+.book-log {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.count {
+    line-height: 3;
 }
