@@ -16,6 +16,11 @@ body {
 }
 
 /* FORM STYLES */
+.heading {
+    margin: 25px;
+    font-size: 2.5em;
+}
+
 .form-container {
     flex: 1;
     display: flex;
@@ -37,8 +42,20 @@ body {
     width: 90%;
 }
 
+input {
+    height: 40px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
 .required-field {
     color: red;
+}
+
+.read-book {
+    display: flex;
+    align-items: center;
 }
 
 .popup {
