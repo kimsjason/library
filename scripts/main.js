@@ -1,3 +1,5 @@
+let myLibrary = [];
+
 function Book(title, author, pages, readBook) {
     this.title = title;
     this.author = author;
@@ -8,14 +10,16 @@ function Book(title, author, pages, readBook) {
     }
 }
 
-let myLibrary = [];
-const books = document.getElementsByClassName('books')[0];
-const bookSample = new Book('Circe', 'Madeline Miller', 393, false)
-const anotherSample = new Book ('The Girl with the Dragon Tattoo', 'Stieg Larsson', 672, true);
-addBookToLibrary(bookSample);
-addBookToLibrary(anotherSample);
-books.appendChild(createBookElement(bookSample));
-books.appendChild(createBookElement(anotherSample));
+function initializeLibrary() {
+    const books = document.getElementsByClassName('books')[0];
+    const bookSample = new Book('Circe', 'Madeline Miller', 393, false)
+    const anotherSample = new Book ('The Girl with the Dragon Tattoo', 'Stieg Larsson', 672, true);
+    addBookToLibrary(bookSample);
+    addBookToLibrary(anotherSample);
+    books.appendChild(createBookElement(bookSample));
+    books.appendChild(createBookElement(anotherSample));
+    countBooks();
+}
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
@@ -59,6 +63,7 @@ function createBookElement(book) {
     }
     readBook.addEventListener('click', () => {
         myLibrary[index].readBook = readBook.checked;
+        countBooks();
     });
 
     title.textContent = book.title;
@@ -74,7 +79,27 @@ function createBookElement(book) {
 
     return card;
 }
-    
+
+function countBooks() {
+    const countRead = document.querySelector('.count-read');
+    const countUnread = document.querySelector('.count-unread');
+    const countTotal = document.querySelector('.count-total');
+
+    let read = 0;
+    let unread = 0;
+    myLibrary.forEach(book => {
+        if (book.readBook) {
+            read+=1;
+        } else {
+            unread+=1;
+        }
+    });
+
+    countRead.textContent = `READ BOOKS: ${read}`;
+    countUnread.textContent = `UNREAD BOOKS: ${unread}`;
+    countTotal.textContent = `TOTAL BOOKS: ${myLibrary.length}`;
+}
+
 const submitForm = document.querySelector('input[type=button]');
 submitForm.addEventListener('click', () => {
     const title = document.querySelector('input[name=title]');
@@ -89,7 +114,12 @@ submitForm.addEventListener('click', () => {
     } else {
         const book = new Book(title.value, author.value, pages.value, readBook.checked);
         addBookToLibrary(book);
+        const books = document.getElementsByClassName('books')[0];
         books.appendChild(createBookElement(book));
+        countBooks();
+        const bookForm = document.querySelector('.book-form');
         bookForm.reset();
     }
 });
+
+initializeLibrary();
