@@ -9,6 +9,13 @@ function Book(title, author, pages, readBook) {
 }
 
 let myLibrary = [];
+const books = document.getElementsByClassName('books')[0];
+const bookSample = new Book('Circe', 'Madeline Miller', 393, false)
+const anotherSample = new Book ('The Girl with the Dragon Tattoo', 'Stieg Larsson', 672, true);
+addBookToLibrary(bookSample);
+addBookToLibrary(anotherSample);
+books.appendChild(createBookElement(bookSample));
+books.appendChild(createBookElement(anotherSample));
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
@@ -83,10 +90,8 @@ newBook.addEventListener('click', () => {
         } else {
             const book = new Book(title.value, author.value, pages.value, readBook.checked);
             addBookToLibrary(book);
-            const books = document.getElementsByClassName('books')[0];
             books.appendChild(createBookElement(book));
             bookForm.reset();
         }
     });
 });
-
