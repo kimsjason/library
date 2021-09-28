@@ -20,7 +20,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: beige;
+    background-color: #a4b8bf;
 }
 
 .new-book {
@@ -36,13 +36,46 @@ body {
     width: 90%;
 }
 
+.popup {
+    display: none;
+}
+
 /* BOOK STYLES */
 .books {
     flex: 3;
     display: flex;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
-.popup {
-    display: none;
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 200px;
+    margin: 25px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f5eae3;
+    line-height: 1.5;
+}
+
+.remove-book {
+    width: 25px;
+    height: 25px;
+    margin-left: auto;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+}
+
+.read-book-container {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    margin-left: auto;
+}
+
+input[type=checkbox] {
+    margin: 0 10px;
 }

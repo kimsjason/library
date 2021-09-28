@@ -18,20 +18,30 @@ function createBookElement(book) {
     const card = document.createElement('div');
     card.classList.add('card');
 
+    // Remove book
     const removeBook = document.createElement('button');
-    const index = myLibrary.indexOf(book);
+    removeBook.textContent = 'X';
     removeBook.classList.add('remove-book');
+    const index = myLibrary.indexOf(book);
     removeBook.addEventListener('click', () => {
         removeBook.parentElement.remove();
         myLibrary.splice(index, 1);
     });
 
+    // Book info
     const title = document.createElement('div');
     const author = document.createElement('div');
     const pages = document.createElement('div');
+
+    // Read book input
+    const readBookContainer = document.createElement('div');
+    readBookContainer.classList.add('read-book-container');
+    const markedRead = document.createElement('div');
     const readBook = document.createElement('input');
+    readBookContainer.appendChild(markedRead);
+    readBookContainer.appendChild(readBook);
     readBook.type = 'checkbox';
-    if (book.readBook == null) {
+    if (book.readBook == false) {
         readBook.checked = false;
     } else {
         readBook.checked = true;
@@ -41,15 +51,15 @@ function createBookElement(book) {
     });
 
     title.textContent = book.title;
-    author.textContent = book.author;
-    pages.textContent = book.pages;
-    readBook.textContent = book.readBook;
+    author.textContent = `By ${book.author}`;
+    pages.textContent = `${book.pages} pages`;
+    markedRead.textContent = 'Marked as read: '
 
     card.appendChild(removeBook);
     card.appendChild(title);
     card.appendChild(author);
     card.appendChild(pages);
-    card.appendChild(readBook);
+    card.appendChild(readBookContainer);
 
     return card;
 }
