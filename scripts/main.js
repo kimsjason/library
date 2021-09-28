@@ -14,9 +14,34 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
-function displayLibrary() {
-    myLibrary.forEach(book => console.log(book));
+function createBookElement(book) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    const title = document.createElement('div');
+    const author = document.createElement('div');
+    const pages = document.createElement('div');
+    const readBook = document.createElement('div');
+
+    title.textContent = book.title;
+    author.textContent = book.author;
+    pages.textContent = book.pages;
+    readBook.textContent = book.readBook;
+
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(pages);
+    card.appendChild(readBook);
+
+    return card;
 }
+
+// function displayLibrary() {
+//     myLibrary.forEach(book => {
+//         document.body.appendChild(createBookElement(book));
+//     });
+// }
+
 
 const newBook = document.querySelector('.new-book');
 newBook.addEventListener('click', () => {
@@ -30,9 +55,10 @@ newBook.addEventListener('click', () => {
         const pages = document.querySelector('input[name=pages]');
         const readBook = document.querySelector('input[name="read book"]:checked');
         const book = new Book(title.value, author.value, pages.value, readBook.value);
+
         addBookToLibrary(book);
+        document.body.appendChild(createBookElement(book));
         bookForm.reset();
     });
-
 });
 
