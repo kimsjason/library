@@ -3,13 +3,13 @@
     <head>
         <meta charset='utf-8'>
         <link rel='stylesheet' href='styles/style.css'>
-        <link rel='stylesheet' href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap'>
         <script src='scripts/main.js' defer></script>
         <title>Library</title>
     </head>
     <body>
         <div class='form-container'>
-            <h1 class='title'>myLibrary</h1>
+            <h1 class='heading'>myLibrary</h1>
             <button class='new-book'>NEW BOOK</button>
             <form class='book-form popup'>
                 <label for='title'>Title<span class='required-field'> *</span></label>
@@ -18,12 +18,11 @@
                 <input type='text' name='author'>
                 <label for='pages'>Number of Pages<span class='required-field'> *</span></label>
                 <input type='text' name='pages'>
-                <fieldset>
-                    <legend>Have you read the book yet?</legend>
-                        <input type='checkbox' id='read' name='read book'>
-                        <label for='read'>Read</label>
-                </fieldset>
-                <input type='button' value='Submit'>
+                <div class='read-book'>
+                    <input type='checkbox' id='read' name='read book'>
+                    <label for='read'>I read this book</label>
+                </div>
+                <input type='button' value='ADD BOOK'>
             </form>
         </div>
         <div class='books'>
