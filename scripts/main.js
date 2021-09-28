@@ -18,6 +18,14 @@ function createBookElement(book) {
     const card = document.createElement('div');
     card.classList.add('card');
 
+    const removeBook = document.createElement('button');
+    removeBook.classList.add('remove-book');
+    removeBook.addEventListener('click', () => {
+        removeBook.parentElement.remove();
+        const index = myLibrary.indexOf(book);
+        myLibrary.splice(index, 1);
+    })
+
     const title = document.createElement('div');
     const author = document.createElement('div');
     const pages = document.createElement('div');
@@ -28,6 +36,7 @@ function createBookElement(book) {
     pages.textContent = book.pages;
     readBook.textContent = book.readBook;
 
+    card.appendChild(removeBook);
     card.appendChild(title);
     card.appendChild(author);
     card.appendChild(pages);
@@ -35,6 +44,9 @@ function createBookElement(book) {
 
     return card;
 }
+
+
+
 
 // function displayLibrary() {
 //     myLibrary.forEach(book => {
