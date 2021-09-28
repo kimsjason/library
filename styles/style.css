@@ -12,6 +12,7 @@ html, body {
 
 body {
     display: flex;
+    font-family: 'Open Sans'
 }
 
 /* FORM STYLES */
