@@ -81,9 +81,9 @@ function createBookElement(book) {
 }
 
 function countBooks() {
-    const countRead = document.querySelector('.count-read');
-    const countUnread = document.querySelector('.count-unread');
-    const countTotal = document.querySelector('.count-total');
+    const countRead = document.querySelector('.read');
+    const countUnread = document.querySelector('.unread');
+    const countTotal = document.querySelector('.total');
 
     let read = 0;
     let unread = 0;
