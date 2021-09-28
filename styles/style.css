@@ -1,11 +1,42 @@
+/* GENERAL STYLES */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    box-sizing: inherit;
+}
+
 body {
     display: flex;
 }
 
+/* FORM STYLES */
 .form-container {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: beige;
 }
 
+.new-book {
+    max-width: 90%;
+    margin: 10px auto; 
+    padding: 15px 30px;
+}
+
+.book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+}
+
+/* BOOK STYLES */
 .books {
     flex: 3;
     display: flex;
