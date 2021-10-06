@@ -1,23 +1,23 @@
 let myLibrary = [];
 
-function Book(title, author, pages, readBook) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.readBook = readBook;
-    info = function () {
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${readBook}`
+class Book {
+    constructor(title, author, pages, readBook) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.readBook = readBook;
+    }
+
+    info() {
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${readBook}`;
     }
 }
 
 function initializeLibrary() {
-    //const books = document.getElementsByClassName('books')[0];
     const bookSample = new Book('Circe', 'Madeline Miller', '393', false)
     const anotherSample = new Book ('The Girl with the Dragon Tattoo', 'Stieg Larsson', '672', true);
     addBookToLibrary(bookSample);
     addBookToLibrary(anotherSample);
-    //books.appendChild(createBookElement(bookSample));
-    // books.appendChild(createBookElement(anotherSample));
     countBooks();
 }
 
