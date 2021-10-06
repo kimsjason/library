@@ -11,13 +11,13 @@ function Book(title, author, pages, readBook) {
 }
 
 function initializeLibrary() {
-    const books = document.getElementsByClassName('books')[0];
-    const bookSample = new Book('Circe', 'Madeline Miller', 393, false)
-    const anotherSample = new Book ('The Girl with the Dragon Tattoo', 'Stieg Larsson', 672, true);
+    //const books = document.getElementsByClassName('books')[0];
+    const bookSample = new Book('Circe', 'Madeline Miller', '393', false)
+    const anotherSample = new Book ('The Girl with the Dragon Tattoo', 'Stieg Larsson', '672', true);
     addBookToLibrary(bookSample);
     addBookToLibrary(anotherSample);
-    books.appendChild(createBookElement(bookSample));
-    books.appendChild(createBookElement(anotherSample));
+    //books.appendChild(createBookElement(bookSample));
+    // books.appendChild(createBookElement(anotherSample));
     countBooks();
 }
 
@@ -37,6 +37,7 @@ function createBookElement(book) {
     removeBook.addEventListener('click', () => {
         removeBook.parentElement.remove();
         myLibrary.splice(index, 1);
+        setLibrary();
     });
 
     // Book info
@@ -100,6 +101,25 @@ function countBooks() {
     countTotal.textContent = `TOTAL BOOKS: ${myLibrary.length}`;
 }
 
+function setLibrary() {
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+
+function getLibrary() {
+    myLibrary = [];
+    const storedLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+    if (storedLibrary) {
+        storedLibrary.forEach(book => {
+            const newBook = new Book(book.title, book.author, book.pages, book.readBook);
+            addBookToLibrary(newBook);
+        })
+    } else {
+        initializeLibrary();
+    }
+    
+    return myLibrary;
+}
+
 const submitForm = document.querySelector('input[type=button]');
 submitForm.addEventListener('click', () => {
     const title = document.querySelector('input[name=title]');
@@ -116,6 +136,7 @@ submitForm.addEventListener('click', () => {
         alertMessage.textContent = '';
         const book = new Book(title.value, author.value, pages.value, readBook.checked);
         addBookToLibrary(book);
+        setLibrary();
         const books = document.getElementsByClassName('books')[0];
         books.appendChild(createBookElement(book));
         countBooks();
@@ -124,4 +145,11 @@ submitForm.addEventListener('click', () => {
     }
 });
 
-initializeLibrary();
+//initializeLibrary();
+
+const books = document.getElementsByClassName('books')[0];
+getLibrary().forEach(book => {
+    books.appendChild(createBookElement(book));
+})
+
+countBooks();
