@@ -1,5 +1,3 @@
-let myLibrary = [];
-
 class Book {
     constructor(title, author, pages, readBook) {
         this.title = title;
@@ -14,8 +12,8 @@ class Book {
 }
 
 class Library {
-    constructor(myLibrary) {
-        this.myLibrary = myLibrary;
+    constructor(library) {
+        this.library = library;
     }
 
     initializeLibrary() {
@@ -27,7 +25,7 @@ class Library {
     }
 
     addBookToLibrary(book) {
-        myLibrary.push(book);
+        this.library.push(book);
     }
 
     countBooks() {
@@ -37,7 +35,7 @@ class Library {
     
         let read = 0;
         let unread = 0;
-        myLibrary.forEach(book => {
+        this.library.forEach(book => {
             if (book.readBook) {
                 read+=1;
             } else {
@@ -47,28 +45,31 @@ class Library {
     
         countRead.textContent = `READ BOOKS: ${read}`;
         countUnread.textContent = `UNREAD BOOKS: ${unread}`;
-        countTotal.textContent = `TOTAL BOOKS: ${myLibrary.length}`;
+        countTotal.textContent = `TOTAL BOOKS: ${this.library.length}`;
     }
 
-    setLibrary() {
-        localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+    set library(value) {
+        localStorage.setItem('library', JSON.stringify(value));
+    }
+
+    get library() {
+        return JSON.parse(localStorage.getItem('library'));
     }
     
-    getLibrary() {
-        myLibrary = [];
-        const storedLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-        if (storedLibrary) {
-            storedLibrary.forEach(book => {
-                const newBook = new Book(book.title, book.author, book.pages, book.readBook);
-                addBookToLibrary(newBook);
-            })
-        } else {
-            initializeLibrary();
-        }
+    // getLibrary() {
+    //     myLibrary = [];
+    //     const storedLibrary = JSON.parse(localStorage.getItem('library'));
+    //     if (storedLibrary) {
+    //         storedLibrary.forEach(book => {
+    //             const newBook = new Book(book.title, book.author, book.pages, book.readBook);
+    //             addBookToLibrary(newBook);
+    //         })
+    //     } else {
+    //         initializeLibrary();
+    //     }
         
-        return myLibrary;
-    }
-
+    //     return myLibrary;
+    // }
 }
 
 function createBookElement(book) {
@@ -153,7 +154,10 @@ submitForm.addEventListener('click', () => {
 });
 
 const books = document.getElementsByClassName('books')[0];
-getLibrary().forEach(book => {
+let library = [];
+let myLibrary = new Library(library);
+
+library.getLibrary().forEach(book => {
     books.appendChild(createBookElement(book));
 })
 
