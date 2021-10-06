@@ -13,16 +13,62 @@ class Book {
     }
 }
 
-function initializeLibrary() {
-    const bookSample = new Book('Circe', 'Madeline Miller', '393', false)
-    const anotherSample = new Book ('The Girl with the Dragon Tattoo', 'Stieg Larsson', '672', true);
-    addBookToLibrary(bookSample);
-    addBookToLibrary(anotherSample);
-    countBooks();
-}
+class Library {
+    constructor(myLibrary) {
+        this.myLibrary = myLibrary;
+    }
 
-function addBookToLibrary(book) {
-    myLibrary.push(book);
+    initializeLibrary() {
+        const bookSample = new Book('Circe', 'Madeline Miller', '393', false)
+        const anotherSample = new Book ('The Girl with the Dragon Tattoo', 'Stieg Larsson', '672', true);
+        addBookToLibrary(bookSample);
+        addBookToLibrary(anotherSample);
+        countBooks();
+    }
+
+    addBookToLibrary(book) {
+        myLibrary.push(book);
+    }
+
+    countBooks() {
+        const countRead = document.querySelector('.read');
+        const countUnread = document.querySelector('.unread');
+        const countTotal = document.querySelector('.total');
+    
+        let read = 0;
+        let unread = 0;
+        myLibrary.forEach(book => {
+            if (book.readBook) {
+                read+=1;
+            } else {
+                unread+=1;
+            }
+        });
+    
+        countRead.textContent = `READ BOOKS: ${read}`;
+        countUnread.textContent = `UNREAD BOOKS: ${unread}`;
+        countTotal.textContent = `TOTAL BOOKS: ${myLibrary.length}`;
+    }
+
+    setLibrary() {
+        localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+    }
+    
+    getLibrary() {
+        myLibrary = [];
+        const storedLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+        if (storedLibrary) {
+            storedLibrary.forEach(book => {
+                const newBook = new Book(book.title, book.author, book.pages, book.readBook);
+                addBookToLibrary(newBook);
+            })
+        } else {
+            initializeLibrary();
+        }
+        
+        return myLibrary;
+    }
+
 }
 
 function createBookElement(book) {
@@ -81,45 +127,6 @@ function createBookElement(book) {
     return card;
 }
 
-function countBooks() {
-    const countRead = document.querySelector('.read');
-    const countUnread = document.querySelector('.unread');
-    const countTotal = document.querySelector('.total');
-
-    let read = 0;
-    let unread = 0;
-    myLibrary.forEach(book => {
-        if (book.readBook) {
-            read+=1;
-        } else {
-            unread+=1;
-        }
-    });
-
-    countRead.textContent = `READ BOOKS: ${read}`;
-    countUnread.textContent = `UNREAD BOOKS: ${unread}`;
-    countTotal.textContent = `TOTAL BOOKS: ${myLibrary.length}`;
-}
-
-function setLibrary() {
-    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-}
-
-function getLibrary() {
-    myLibrary = [];
-    const storedLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-    if (storedLibrary) {
-        storedLibrary.forEach(book => {
-            const newBook = new Book(book.title, book.author, book.pages, book.readBook);
-            addBookToLibrary(newBook);
-        })
-    } else {
-        initializeLibrary();
-    }
-    
-    return myLibrary;
-}
-
 const submitForm = document.querySelector('input[type=button]');
 submitForm.addEventListener('click', () => {
     const title = document.querySelector('input[name=title]');
@@ -144,8 +151,6 @@ submitForm.addEventListener('click', () => {
         bookForm.reset();
     }
 });
-
-//initializeLibrary();
 
 const books = document.getElementsByClassName('books')[0];
 getLibrary().forEach(book => {
